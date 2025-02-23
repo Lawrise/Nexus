@@ -1,0 +1,86 @@
+.tiptap h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.tiptap h2 {
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+.tiptap h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.tiptap {
+  @apply h-full;
+
+  :first-child {
+    margin-top: 0;
+  }
+
+  pre {
+    @apply font-mono my-6 p-4;
+
+    font-family: "JetBrainsMono", monospace;
+    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
+
+    code {
+      @apply bg-transparent text-sm p-0;
+    }
+
+    /* Syntax highlighting */
+    .hljs-comment,
+    .hljs-quote {
+      @apply text-neutral-500 dark:text-neutral-400;
+    }
+
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-attribute,
+    .hljs-tag,
+    .hljs-regexp,
+    .hljs-link,
+    .hljs-name,
+    .hljs-selector-id,
+    .hljs-selector-class {
+      @apply text-red-400 dark:text-red-300;
+    }
+
+    .hljs-number,
+    .hljs-meta,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-type,
+    .hljs-params {
+      @apply text-orange-300 dark:text-orange-200;
+    }
+
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-bullet {
+      @apply text-green-400 dark:text-green-300;
+    }
+
+    .hljs-title,
+    .hljs-section {
+      @apply text-yellow-300 dark:text-yellow-200;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+      @apply text-blue-600 dark:text-blue-300;
+    }
+
+    .hljs-emphasis {
+      @apply italic;
+    }
+
+    .hljs-strong {
+      @apply font-bold;
+    }
+  }
+}

@@ -17,6 +17,8 @@ import Italic_t from "@tiptap/extension-italic";
 import Strike_t from "@tiptap/extension-strike";
 import Underline_t from "@tiptap/extension-underline";
 
+import "@/style/editor.css";
+
 import { all, createLowlight } from "lowlight";
 import Menu from "./menu";
 
@@ -51,12 +53,26 @@ const Tiptap = () => {
           class: "my-4",
         },
       }),
-      TaskList,
+      TaskList.configure({
+        HTMLAttributes: {
+          class: "list-none my-2",
+        },
+      }),
       TaskItem.configure({
         nested: true,
         HTMLAttributes: {
-          class:
-            "flex items-center space-x-2 ml-4 [&[data-checked='true']_p]:line-through",
+          class: `
+      flex items-center gap-3 ml-4
+      [&[data-checked='true']_p]:line-through
+      [&[data-checked='true']_p]:accent-pink-500
+      [&>label]:flex
+      [&>label]:items-center-
+      [&>label>input]:w-4
+      [&>label>input]:h-4
+      [&>label>input]:accent-blue-500
+      [&>div]:flex
+      [&>div]:items-center
+    `,
         },
       }),
       CodeBlockLowlight.configure({
