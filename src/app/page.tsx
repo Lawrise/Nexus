@@ -6,7 +6,7 @@ import Tiptap from "@/components/editor/Tiptap";
 export default function Home() {
   return (
     <>
-      <header className="ml-16 z-10 bg-white border-b-2 w-full h-10 border-solid dark:bg-dark_background_primary border-dark_background_light p-2 flex justify-between dark:border-text_primary text-text_primary fixed top-0 right-0">
+      <header className="ml-16 z-10 w-full h-10  p-2 flex justify-between text-text_primary fixed top-0 right-0">
         <CustomTrigger hideWhenOpen={true} />
         <div>
           <DarkModeToggle />

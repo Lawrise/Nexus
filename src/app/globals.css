@@ -29,3 +29,29 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+
+/* @theme {
+  /* Base colors 
+  --color-primary: oklch(0.55 0.15 250);
+  --color-surface-light: oklch(0.98 0 0);
+  --color-surface-dark: oklch(0.2 0 0);
+
+  /* Background colors 
+  
+  /* Text colors 
+  --color-text-primary-light: oklch(0.2 0 0);
+  --color-text-primary-dark: oklch(0.95 0 0);
+  --color-text-secondary-light: oklch(0.45 0 0);
+  --color-text-secondary-dark: oklch(0.8 0 0);
+  
+  /* Border colors 
+  --color-border-light: oklch(0.9 0 0);
+  --color-border-dark: oklch(0.3 0 0);
+  
+  /* Spacing 
+  --size-sidebar: 250px;
+  
+  /* Shadows 
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-popup: 0 4px 6px -1px rgba(0,0,0,0.1);
+} */

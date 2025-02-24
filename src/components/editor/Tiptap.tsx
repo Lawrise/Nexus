@@ -71,6 +71,7 @@ const Tiptap = () => {
       [&>label>input]:w-4
       [&>label>input]:h-4
       [&>label>input]:accent-blue-500
+       [&>label>input]:ring-none
       [&>div]:flex
       [&>div]:items-center
     `,
@@ -89,7 +90,11 @@ const Tiptap = () => {
       Italic_t,
       Strike_t,
       Underline_t,
-      Dropcursor,
+      Dropcursor.configure({
+        color: '#0000ff',
+        width: 2,
+      })
+      
     ],
     content: `
     <h1>Hello World! 🌎️</h1>
@@ -126,7 +131,7 @@ const Tiptap = () => {
     <>
       {editor && <Menu editor={editor} />}
       {editor && (
-        <DragHandle editor={editor} className="bg-none hover:bg-gray-100 rounded-md p-2">
+        <DragHandle editor={editor} className="bg-none hover:bg-gray-100 rounded-md py-1">
           <GripVertical className="w-5 h-5 text-gray-400 text-xl " />
         </DragHandle>
       )}

@@ -9,10 +9,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-screen">
-      <body className="h-screen w-screen dark:bg-dark_background_primary dark:text-white">
+      <body className="h-screen w-screen dark:bg-zinc-900 dark:text-white">
         <SidebarProvider className="h-full">
           <AppSidebar/>
-          <main className="w-full h-full dark:bg-dark_background_primary dark:text-white relative">{children}</main>
+          <main className="w-full h-full dark:bg-[#191919] dark:text-white relative">{children}</main>
           <div id="modal-root"></div>
         </SidebarProvider>
         {/* {children} */}
