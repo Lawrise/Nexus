@@ -21,14 +21,13 @@
   }
 
   pre {
-    @apply font-mono my-6 p-4;
-
+    @apply font-mono my-6 p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800;
+    margin: 0;
     font-family: "JetBrainsMono", monospace;
-    margin: 1.5rem 0;
-    padding: 0.75rem 1rem;
 
     code {
-      @apply bg-transparent text-sm p-0;
+      @apply block text-sm p-4 overflow-x-auto;
+      background: transparent !important; /* Override highlight.js background */
     }
 
     /* Syntax highlighting */
@@ -83,4 +82,10 @@
       @apply font-bold;
     }
   }
+}
+
+/* Add specific syntax highlighting overrides */
+.hljs {
+  background: transparent !important;
+  padding: 0 !important;
 }

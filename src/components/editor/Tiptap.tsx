@@ -16,6 +16,9 @@ import Bold_t from "@tiptap/extension-bold";
 import Italic_t from "@tiptap/extension-italic";
 import Strike_t from "@tiptap/extension-strike";
 import Underline_t from "@tiptap/extension-underline";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import { CodeBlockComponent } from "./extensions/CodeBlockComponent";
+import { CustomCodeBlock } from "../CustomNode/CodeBlockPer";
 
 import "@/style/editor.css";
 
@@ -75,12 +78,15 @@ const Tiptap = () => {
     `,
         },
       }),
-      CodeBlockLowlight.configure({
-        lowlight,
-        HTMLAttributes: {
-          class: "bg-neutral-50 p-4 text-black",
-        },
-      }),
+      // CodeBlockLowlight.configure({
+      //   lowlight,
+      //   HTMLAttributes: {
+      //     class: "bg-neutral-50 p-4 text-black rounded-lg",
+      //   },
+      //   nodeName: "CodeBlock",
+      //   nodeView: ReactNodeViewRenderer(CodeBlockComponent),
+      // }),
+      CustomCodeBlock,
       Bold_t,
       Italic_t,
       Strike_t,
