@@ -8,11 +8,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-sreen">
-      <body>
-        <SidebarProvider>
+    <html lang="en" className="h-screen">
+      <body className="h-screen w-screen dark:bg-zinc-900 dark:text-white">
+        <SidebarProvider className="h-full">
           <AppSidebar/>
-          <main className="w-full dark:bg-dark_background_primary dark:text-white">{children}</main>
+          <main className="w-full h-full dark:bg-[#191919] dark:text-white relative">{children}</main>
           <div id="modal-root"></div>
         </SidebarProvider>
         {/* {children} */}

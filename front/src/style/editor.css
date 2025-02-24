@@ -1,0 +1,139 @@
+.tiptap h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.tiptap h2 {
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+.tiptap h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.tiptap {
+  @apply h-full;
+
+  :first-child {
+    margin-top: 0;
+  }
+
+  pre {
+    @apply font-mono my-6 p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800;
+    margin: 0;
+    font-family: "JetBrainsMono", monospace;
+
+    code {
+      @apply block text-sm p-4 overflow-x-auto;
+      background: transparent !important; /* Override highlight.js background */
+    }
+
+    /* Syntax highlighting */
+    .hljs-comment,
+    .hljs-quote {
+      @apply text-neutral-500 dark:text-neutral-400;
+    }
+
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-attribute,
+    .hljs-tag,
+    .hljs-regexp,
+    .hljs-link,
+    .hljs-name,
+    .hljs-selector-id,
+    .hljs-selector-class {
+      @apply text-red-400 dark:text-red-300;
+    }
+
+    .hljs-number,
+    .hljs-meta,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-type,
+    .hljs-params {
+      @apply text-orange-300 dark:text-orange-200;
+    }
+
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-bullet {
+      @apply text-green-400 dark:text-green-300;
+    }
+
+    .hljs-title,
+    .hljs-section {
+      @apply text-yellow-300 dark:text-yellow-200;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+      @apply text-blue-600 dark:text-blue-300;
+    }
+
+    .hljs-emphasis {
+      @apply italic;
+    }
+
+    .hljs-strong {
+      @apply font-bold;
+    }
+  }
+}
+
+/* Add specific syntax highlighting overrides */
+.hljs {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.drag-handle {
+  align-items: center;
+  background: #f0f0f0;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  display: flex;
+  height: 1.5rem;
+  justify-content: center;
+  width: 1.5rem;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.ProseMirror {
+  padding-inline: 4rem;
+
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  [data-id] {
+    border: 3px solid #0d0d0d;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    position: relative;
+    margin-top: 1.5rem;
+    padding: 2rem 1rem 1rem;
+
+    &::before {
+      content: attr(data-id);
+      background-color: #0d0d0d;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+  }
+}
