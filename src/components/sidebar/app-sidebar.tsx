@@ -48,7 +48,7 @@ export function AppSidebar() {
     <Sidebar
       variant="sidebar"
       collapsible="offcanvas"
-      className="bg-zinc-50 dark:bg-dark_background_light dark:text-white"
+      className="z-20 bg-zinc-50 dark:bg-dark_background_light dark:text-white"
     >
       <SidebarHeader className="flex-row items-center justify-between py-2 px-6">
         <p>Jembe Boisne</p>

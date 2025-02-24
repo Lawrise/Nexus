@@ -11,22 +11,20 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Bold_t from "@tiptap/extension-bold";
 import Italic_t from "@tiptap/extension-italic";
 import Strike_t from "@tiptap/extension-strike";
 import Underline_t from "@tiptap/extension-underline";
-import { ReactNodeViewRenderer } from "@tiptap/react";
-import { CodeBlockComponent } from "./extensions/CodeBlockComponent";
 import { CustomCodeBlock } from "../CustomNode/CodeBlockPer";
+import DragHandle from "@tiptap-pro/extension-drag-handle-react";
+import Dropcursor from '@tiptap/extension-dropcursor'
+import {GripVertical} from 'lucide-react'
 
 import "@/style/editor.css";
 
-import { all, createLowlight } from "lowlight";
 import Menu from "./menu";
 
 const Tiptap = () => {
-  const lowlight = createLowlight(all);
   const editor = useEditor({
     extensions: [
       Document,
@@ -91,6 +89,7 @@ const Tiptap = () => {
       Italic_t,
       Strike_t,
       Underline_t,
+      Dropcursor,
     ],
     content: `
     <h1>Hello World! 🌎️</h1>
@@ -126,6 +125,11 @@ const Tiptap = () => {
   return (
     <>
       {editor && <Menu editor={editor} />}
+      {editor && (
+        <DragHandle editor={editor} className="bg-none hover:bg-gray-100 rounded-md p-2">
+          <GripVertical className="w-5 h-5 text-gray-400 text-xl " />
+        </DragHandle>
+      )}
       <EditorContent editor={editor} className="h-full focus:border-none" />
     </>
   );
