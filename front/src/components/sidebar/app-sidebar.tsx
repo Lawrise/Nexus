@@ -38,27 +38,30 @@ const items = [
   },
 ];
 import MenuItemWithModal from "./menuItemModal";
+import SidebarProfile from "./sidebarProfile";
+import { useAuth } from "@/context/authContext";
 
 /*
   The notion inspiered sidebar based on the shad/cn ui sidebar.
   All the navigation in the app is done with this sidebar and it will always been displayed.
 */
 export function AppSidebar() {
+  const { user, logout } = useAuth();
   return (
     <Sidebar
       variant="sidebar"
-      collapsible="offcanvas"
+      collapsible="icon"
       className="z-20 bg-zinc-50 dark:bg-[#202020] dark:text-white border-r-none"
     >
       <SidebarHeader className="flex-row items-center justify-between py-2 px-6">
-        <p>Jembe Boisne</p>
+        <SidebarProfile user={user} logout={logout} />
         <CustomTrigger />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>General</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu >
               {items.map((item) => (
                 <MenuItemWithModal
                   key={item.title}

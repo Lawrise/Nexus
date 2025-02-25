@@ -1,6 +1,6 @@
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import React from "react";
-import { SidebarMenuItem } from "@/components/ui/sidebar"; // Import SidebarMenuItem if not already
+import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"; // Import SidebarMenuItem if not already
 
 interface MenuItemWithModalProps {
   title: string;
@@ -15,15 +15,15 @@ const MenuItemWithModal: React.FC<MenuItemWithModalProps> = ({ title, icon: Icon
   return (
     <SidebarMenuItem
       key={title}
-      className="hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg flex items-center justify-between p-1"
+      className="hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg flex items-center justify-center p-1"
     >
       {/* Button that triggers the dialog */}
       <Dialog>
         <DialogTrigger asChild>
-          <button className="flex items-center space-x-3 w-full h-full text-text_primary dark:text-text_dark p-[2px]">
+          <SidebarMenuButton className="flex items-center space-x-3 w-full h-full text-text_primary dark:text-text_dark p-[2px]">
             <Icon className="w-4 h-4 text-zinc-600 dark:text-zinc-400" />
             <span className="text-sm text-zinc-600 dark:text-zinc-400">{title}</span>
-          </button>
+          </SidebarMenuButton>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
