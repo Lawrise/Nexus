@@ -1,6 +1,6 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import "./globals.css";
+import "@/style/globals.css";
 import { AuthProvider } from "@/context/authContext";
 
 export default function RootLayout({

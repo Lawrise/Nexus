@@ -42,21 +42,21 @@ const SidebarProfile: React.FC<SidebarHeaderProfileProps> = ({
     );
   }
 
-  const userInitials = user.email.substring(0, 2).toUpperCase();
+  const userInitials = user.email.substring(0, 1).toUpperCase();
   const username = user.email.split("@")[0];
 
   return (
     <DropdownMenu>
       <Tooltip>
         <TooltipTrigger asChild>
-          <DropdownMenuTrigger className="w-full flex items-center space-x-4 p-2 rounded-md hover:bg-sidebar-accent group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:space-x-0 outline-none">
-            <Avatar className="size-8 shrink-0">
+          <DropdownMenuTrigger className="w-full flex items-center space-x-4 rounded-md outline-none">
+            <Avatar className="size-6 shrink-0 rounded-sm">
               <AvatarImage alt={username} />
-              <AvatarFallback className="bg-emerald-100">
+              <AvatarFallback className="bg-emerald-100 text-xs">
                 {userInitials}
               </AvatarFallback>
             </Avatar>
-            <p className="truncate group-data-[collapsible=icon]:hidden">
+            <p className="truncate text-sm font-medium t">
               {username}
             </p>
           </DropdownMenuTrigger>

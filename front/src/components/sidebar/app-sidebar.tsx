@@ -50,10 +50,10 @@ export function AppSidebar() {
   return (
     <Sidebar
       variant="sidebar"
-      collapsible="icon"
+      collapsible="offcanvas"
       className="z-20 bg-zinc-50 dark:bg-[#202020] dark:text-white border-r-none"
     >
-      <SidebarHeader className="flex-row items-center justify-between py-2 px-6">
+      <SidebarHeader className="flex-row items-center justify-between py-2">
         <SidebarProfile user={user} logout={logout} />
         <CustomTrigger />
       </SidebarHeader>
