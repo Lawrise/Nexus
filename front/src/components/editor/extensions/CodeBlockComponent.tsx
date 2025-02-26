@@ -39,8 +39,8 @@ export const CodeBlockComponent = ({
 
       hljs.highlightElement(codeRef.current);
     }
-    console.log("Language:", node.attrs.language);
-    console.log("Text content:", node.textContent);
+    // console.log("Language:", node.attrs.language);
+    // console.log("Text content:", node.textContent);
   }, [node.attrs.language, node.textContent, codeRef.current?.textContent]);
 
   const copyToClipboard = async () => {
