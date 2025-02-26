@@ -99,9 +99,16 @@ export const login = async (req: Request<{}, {}, LoginBody>, res: Response) => {
       { expiresIn: "24h" }
     );
 
+    res.cookie("auth-token", token, {
+      httpOnly: true, // Prevents JavaScript access
+      secure: process.env.NODE_ENV === "production", // HTTPS only in production
+      sameSite: "strict", // CSRF protection
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      path: "/", // Cookie accessible across all routes
+    });
+
     res.json({
       message: "Login successful",
-      token,
       user: {
         id: user.id,
         username: user.username,

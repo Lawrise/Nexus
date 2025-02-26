@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,17 +21,14 @@ import axios from "axios";
 import { useAuth } from "@/context/authContext";
 
 const formSchema = z.object({
-  identifiant: z
-    .string()
-    .min(1, { message: "This field has to be filled." }),
-  password: z
-    .string()
+  identifiant: z.string().min(1, { message: "This field has to be filled." }),
+  password: z.string(),
 });
 
 const Login: React.FC = () => {
-	const router = useRouter();
-	const [isLoading, setIsLoading] = useState(false);
-  const {login} = useAuth();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,12 +46,13 @@ const Login: React.FC = () => {
         password: values.password,
       });
 
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      login(response.data.user);
-      console.log(response.data.user);
-	  router.push('/');
+      if (response.status === 200) {
+        login(response.data.user);
+        // Add a small delay to ensure cookie is set
+        setTimeout(() => {
+          router.push("/");
+        }, 100);
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const errorMessage = error.response?.data?.error || "Login failed";
@@ -74,7 +72,7 @@ const Login: React.FC = () => {
           Pulse
         </h1>
         <h1 className="">Don&apos;t have an account ?</h1>
-        <Button onClick={() => router.push('/register')}>Sign up</Button>
+        <Button onClick={() => router.push("/register")}>Sign up</Button>
       </div>
       <div className="w-2/3 flex bg-amber-50 justify-center items-center">
         <Form {...form}>
