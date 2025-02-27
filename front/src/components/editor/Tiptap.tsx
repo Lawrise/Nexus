@@ -15,15 +15,18 @@ import Bold_t from "@tiptap/extension-bold";
 import Italic_t from "@tiptap/extension-italic";
 import Strike_t from "@tiptap/extension-strike";
 import Underline_t from "@tiptap/extension-underline";
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import DragHandle from "@tiptap-pro/extension-drag-handle-react";
-import Dropcursor from '@tiptap/extension-dropcursor'
-import {GripVertical} from 'lucide-react';
-import { all, createLowlight } from 'lowlight';
-import css from 'highlight.js/lib/languages/css'
-import js from 'highlight.js/lib/languages/javascript'
-import ts from 'highlight.js/lib/languages/typescript'
-import html from 'highlight.js/lib/languages/xml';
+import Dropcursor from "@tiptap/extension-dropcursor";
+import { GripVertical } from "lucide-react";
+import { all, createLowlight } from "lowlight";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+import Commands from "@/components/editor/extensions/slash/command";
+import getSuggestionItems from "@/components/editor/extensions/slash/items";
+import renderItems from "@/components/editor/extensions/slash/renderItems";
 
 import "@/style/editor.css";
 
@@ -31,14 +34,13 @@ import Menu from "./menu";
 import CodeComponent from "./extensions/CodeBlockComponent";
 
 // create a lowlight instance
-const lowlight = createLowlight(all)
+const lowlight = createLowlight(all);
 
 // you can also register individual languages
-lowlight.register('html', html)
-lowlight.register('css', css)
-lowlight.register('js', js)
-lowlight.register('ts', ts)
-
+lowlight.register("html", html);
+lowlight.register("css", css);
+lowlight.register("js", js);
+lowlight.register("ts", ts);
 
 const Tiptap = () => {
   const editor = useEditor({
@@ -93,30 +95,25 @@ const Tiptap = () => {
     `,
         },
       }),
-      // CodeBlockLowlight.configure({
-      //   lowlight,
-      //   HTMLAttributes: {
-      //     class: "bg-neutral-50 p-4 text-black rounded-lg",
-      //   },
-      //   nodeName: "CodeBlock",
-      //   nodeView: ReactNodeViewRenderer(CodeBlockComponent),
-      // }),
-      CodeBlockLowlight
-        .extend({
-          addNodeView() {
-            return ReactNodeViewRenderer(CodeComponent)
-          },
-        })
-        .configure({ lowlight }),
+      CodeBlockLowlight.extend({
+        addNodeView() {
+          return ReactNodeViewRenderer(CodeComponent);
+        },
+      }).configure({ lowlight }),
       Bold_t,
       Italic_t,
       Strike_t,
       Underline_t,
       Dropcursor.configure({
-        color: '#0000ff',
+        color: "#0000ff",
         width: 2,
-      })
-      
+      }),
+      Commands.configure({
+        suggestion: {
+          items: getSuggestionItems,
+          render: renderItems,
+        },
+      }),
     ],
     content: `
     <h1>Hello World! 🌎️</h1>
@@ -153,7 +150,10 @@ const Tiptap = () => {
     <>
       {editor && <Menu editor={editor} />}
       {editor && (
-        <DragHandle editor={editor} className="bg-none hover:bg-gray-100 rounded-md py-1">
+        <DragHandle
+          editor={editor}
+          className="bg-none hover:bg-gray-100 rounded-md py-1"
+        >
           <GripVertical className="w-5 h-5 text-gray-400 text-xl " />
         </DragHandle>
       )}
