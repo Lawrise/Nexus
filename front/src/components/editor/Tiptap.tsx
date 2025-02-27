@@ -1,5 +1,5 @@
 import React from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
+import { useEditor, EditorContent, ReactNodeViewRenderer } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
@@ -15,14 +15,30 @@ import Bold_t from "@tiptap/extension-bold";
 import Italic_t from "@tiptap/extension-italic";
 import Strike_t from "@tiptap/extension-strike";
 import Underline_t from "@tiptap/extension-underline";
-import { CustomCodeBlock } from "../CustomNode/CodeBlockPer";
+import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import DragHandle from "@tiptap-pro/extension-drag-handle-react";
 import Dropcursor from '@tiptap/extension-dropcursor'
-import {GripVertical} from 'lucide-react'
+import {GripVertical} from 'lucide-react';
+import { all, createLowlight } from 'lowlight';
+import css from 'highlight.js/lib/languages/css'
+import js from 'highlight.js/lib/languages/javascript'
+import ts from 'highlight.js/lib/languages/typescript'
+import html from 'highlight.js/lib/languages/xml';
 
 import "@/style/editor.css";
 
 import Menu from "./menu";
+import CodeComponent from "./extensions/CodeBlockComponent";
+
+// create a lowlight instance
+const lowlight = createLowlight(all)
+
+// you can also register individual languages
+lowlight.register('html', html)
+lowlight.register('css', css)
+lowlight.register('js', js)
+lowlight.register('ts', ts)
+
 
 const Tiptap = () => {
   const editor = useEditor({
@@ -85,7 +101,13 @@ const Tiptap = () => {
       //   nodeName: "CodeBlock",
       //   nodeView: ReactNodeViewRenderer(CodeBlockComponent),
       // }),
-      CustomCodeBlock,
+      CodeBlockLowlight
+        .extend({
+          addNodeView() {
+            return ReactNodeViewRenderer(CodeComponent)
+          },
+        })
+        .configure({ lowlight }),
       Bold_t,
       Italic_t,
       Strike_t,
