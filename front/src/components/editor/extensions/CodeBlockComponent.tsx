@@ -63,7 +63,7 @@ const CodeComponent: React.FC<NodeViewProps> = ({
         value={language || "auto"}
         onValueChange={(value) => updateAttributes({ language: value })}
       >
-        <SelectTrigger className="w-fit absolute left-2 top-2 p-none h-5 text-sm text-zinc-500 outline-none border-none ring-0 hover:ring-0 hover:border-none shadow-none focus:border-none focus:ring-0 focus:shadow-none">
+        <SelectTrigger className="w-fit absolute left-8 px-0 top-2 py-5 h-5 text-sm text-zinc-500 outline-none border-none ring-0 hover:ring-0 hover:border-none shadow-none focus:border-none focus:ring-0 focus:shadow-none">
           <SelectValue placeholder="Select language" />
         </SelectTrigger>
         <SelectContent>
@@ -76,7 +76,7 @@ const CodeComponent: React.FC<NodeViewProps> = ({
         </SelectContent>
       </Select>
       <Button
-        className="flex items-center absolute top-2 right-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded focus:border-none focus-visible:border-none focus:ring-0 focus-visible:ring-0"
+        className="flex items-center px-4 absolute top-2 right-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded focus:border-none focus-visible:border-none focus:ring-0 focus-visible:ring-0"
         onClick={(e) => {
           e.stopPropagation();
           copyToClipboard();
@@ -96,7 +96,7 @@ const CodeComponent: React.FC<NodeViewProps> = ({
           </>
         )}
       </Button>
-      <pre className="bg-neutral-50 pt-8 px-4 rounded-lg">
+      <pre>
         <NodeViewContent as="code" />
       </pre>
     </NodeViewWrapper>
