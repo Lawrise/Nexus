@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NodeViewContent, NodeViewWrapper, NodeViewProps } from "@tiptap/react";
 import {
   Select,
@@ -7,6 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Check, Copy } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface CodeBlockAttributes {
   language: string;
@@ -41,10 +43,19 @@ const CodeComponent: React.FC<NodeViewProps> = ({
   updateAttributes,
   extension,
 }) => {
+  const [isCopied, setIsCopied] = useState(false);
   const language = (node?.attrs as CodeBlockAttributes)?.language;
   const languages = (
     extension as CodeComponentProps["extension"]
   ).options.lowlight.listLanguages();
+
+  const copyToClipboard = (): void => {
+    navigator.clipboard.writeText(node.textContent);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
+  };
 
   return (
     <NodeViewWrapper className="code-block relative">
@@ -57,9 +68,6 @@ const CodeComponent: React.FC<NodeViewProps> = ({
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="auto">Auto</SelectItem>
-          <SelectItem value="separator" disabled className="font-bold">
-            ───────────
-          </SelectItem>
           {SUPPORTED_LANGUAGES.map((lang) => (
             <SelectItem key={lang} value={lang}>
               {lang}
@@ -67,6 +75,27 @@ const CodeComponent: React.FC<NodeViewProps> = ({
           ))}
         </SelectContent>
       </Select>
+      <Button
+        className="flex items-center absolute top-2 right-2 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded focus:border-none focus-visible:border-none focus:ring-0 focus-visible:ring-0"
+        onClick={(e) => {
+          e.stopPropagation();
+          copyToClipboard();
+        }}
+        type="button"
+        variant="ghost"
+      >
+        {isCopied ? (
+          <>
+            <Check className="h-4 w-4 mr-1" />
+            <span>Copied!</span>
+          </>
+        ) : (
+          <>
+            <Copy className="h-4 w-4 mr-1" />
+            <span>Copy</span>
+          </>
+        )}
+      </Button>
       <pre className="bg-neutral-50 pt-8 px-4 rounded-lg">
         <NodeViewContent as="code" />
       </pre>
