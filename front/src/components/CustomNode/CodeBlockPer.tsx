@@ -1,4 +1,4 @@
-import { CodeBlockComponent } from "../editor/extensions/CodeBlockComponent";
+import CodeBlockView from "../editor/extensions/CodeBlockComponent";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css"; // or any other theme you prefer
 import { textblockTypeInputRule } from '@tiptap/core'
@@ -108,7 +108,7 @@ export const CustomCodeBlock = Node.create<CodeBlockOptions>({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(CodeBlockComponent);
+    return ReactNodeViewRenderer(CodeBlockView);
   },
 
   addInputRules() {

@@ -1,5 +1,5 @@
-import { NodeViewContent, NodeViewProps, NodeViewWrapper } from "@tiptap/react";
 import React from "react";
+import { NodeViewContent, NodeViewWrapper, NodeViewProps } from "@tiptap/react";
 import {
   Select,
   SelectContent,
@@ -7,84 +7,71 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Copy } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css";
 
-const languages = [
-  { value: "plain", label: "Plain Text" },
-  { value: "typescript", label: "TypeScript" },
-  { value: "javascript", label: "JavaScript" },
-  { value: "python", label: "Python" },
-  { value: "java", label: "Java" },
-  { value: "cpp", label: "C++" },
-  { value: "ruby", label: "Ruby" },
-  { value: "php", label: "PHP" },
-  { value: "html", label: "HTML" },
-  { value: "css", label: "CSS" },
-  { value: "sql", label: "SQL" },
-];
+interface CodeBlockAttributes {
+  language: string;
+}
 
-export const CodeBlockComponent = ({
+const SUPPORTED_LANGUAGES = [
+  "javascript",
+  "typescript",
+  "python",
+  "html",
+  "css",
+  "json",
+  "markdown",
+  // Add more languages as needed
+] as const;
+
+interface CodeComponentProps extends Omit<NodeViewProps, "node" | "extension"> {
+  node: {
+    attrs: CodeBlockAttributes;
+  };
+  extension: {
+    options: {
+      lowlight: {
+        listLanguages: () => string[];
+      };
+    };
+  };
+}
+
+const CodeComponent: React.FC<NodeViewProps> = ({
   node,
   updateAttributes,
-}: NodeViewProps) => {
-  const codeRef = React.useRef<HTMLElement>(null);
-
-  React.useEffect(() => {
-    // Use setTimeout to ensure the code is fully rendered before highlighting
-    if (codeRef.current) {
-      codeRef.current.removeAttribute("data-highlighted");
-
-      hljs.highlightElement(codeRef.current);
-    }
-    // console.log("Language:", node.attrs.language);
-    // console.log("Text content:", node.textContent);
-  }, [node.attrs.language, node.textContent, codeRef.current?.textContent]);
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(node.textContent);
-    } catch (err) {
-      console.error("Failed to copy text:", err);
-    }
-  };
+  extension,
+}) => {
+  const language = (node?.attrs as CodeBlockAttributes)?.language;
+  const languages = (
+    extension as CodeComponentProps["extension"]
+  ).options.lowlight.listLanguages();
 
   return (
-    <NodeViewWrapper className="relative group py-2">
-      <div className="bg-neutral-100 dark:bg-neutral-800 p-2 rounded-t-lg py-2">
-        <div className="flex items-center justify-between">
-          <Select
-            value={node.attrs.language}
-            onValueChange={(value) => updateAttributes({ language: value })}
-          >
-            <SelectTrigger className="w-[180px] h-8">
-              <SelectValue placeholder="Select language" />
-            </SelectTrigger>
-            <SelectContent>
-              {languages.map((lang) => (
-                <SelectItem key={lang.value} value={lang.value}>
-                  {lang.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="opacity-0 group-hover:opacity-100 transition-opacity"
-            onClick={copyToClipboard}
-          >
-            <Copy className="h-4 w-4" />
-          </Button>
-        </div>
-        <pre className="!mt-0 !rounded-t-none">
-          <code ref={codeRef} className={`language-${node.attrs.language}`}>
-            <NodeViewContent />
-          </code>
-        </pre>
-      </div>
+    <NodeViewWrapper className="code-block relative">
+      <Select
+        value={language || "auto"}
+        onValueChange={(value) => updateAttributes({ language: value })}
+      >
+        <SelectTrigger className="w-fit absolute left-2 top-2 p-none h-5 text-sm text-zinc-500 outline-none border-none ring-0 hover:ring-0 hover:border-none shadow-none focus:border-none focus:ring-0 focus:shadow-none">
+          <SelectValue placeholder="Select language" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="auto">Auto</SelectItem>
+          <SelectItem value="separator" disabled className="font-bold">
+            ───────────
+          </SelectItem>
+          {SUPPORTED_LANGUAGES.map((lang) => (
+            <SelectItem key={lang} value={lang}>
+              {lang}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <pre className="bg-neutral-50 pt-8 px-4 rounded-lg">
+        <NodeViewContent as="code" />
+      </pre>
     </NodeViewWrapper>
   );
 };
+
+export default CodeComponent;

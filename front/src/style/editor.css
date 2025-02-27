@@ -21,12 +21,12 @@
   }
 
   pre {
-    @apply font-mono my-6 p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800;
+    @apply font-mono my-6 py-12 px-4 rounded-lg bg-neutral-100 dark:bg-neutral-800;
     margin: 0;
     font-family: "JetBrainsMono", monospace;
 
     code {
-      @apply block text-sm p-4 overflow-x-auto;
+      @apply block text-sm overflow-x-auto;
       background: transparent !important; /* Override highlight.js background */
     }
 
