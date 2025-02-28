@@ -10,6 +10,7 @@ import {
   ListOrdered,
   SquareCheck,
   Minus,
+  Code,
 } from "lucide-react";
 
 interface CommandItem {
@@ -92,6 +93,13 @@ const getSuggestionItems = (
       icon: <SquareCheck className="w-4 h-4" />,
       command: ({ editor, range }: GetSuggestionItemsProps) => {
         editor.chain().focus().deleteRange(range).toggleTaskList().run();
+      },
+    },
+    {
+      title: "Code Block",
+      icon: <Code className="w-4 h-4" />,
+      command: ({ editor, range }: GetSuggestionItemsProps) => {
+        editor.chain().focus().deleteRange(range).toggleCodeBlock().run();
       },
     },
     {
