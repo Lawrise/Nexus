@@ -18,6 +18,7 @@ import Underline_t from "@tiptap/extension-underline";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import DragHandle from "@tiptap-pro/extension-drag-handle-react";
 import Dropcursor from "@tiptap/extension-dropcursor";
+import Placeholder from "@tiptap/extension-placeholder";
 import { GripVertical } from "lucide-react";
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
@@ -30,7 +31,7 @@ import renderItems from "@/components/editor/extensions/slash/renderItems";
 
 import "@/style/editor.css";
 
-import Menu from "./menu";
+import Menu from "./extensions/menu";
 import CodeComponent from "./extensions/CodeBlockComponent";
 
 // create a lowlight instance
@@ -105,13 +106,26 @@ const Tiptap = () => {
       Strike_t,
       Underline_t,
       Dropcursor.configure({
-        color: "#0000ff",
-        width: 2,
+        color: "#000055",
+        width: 4,
       }),
       Commands.configure({
         suggestion: {
           items: getSuggestionItems,
           render: renderItems,
+        },
+      }),
+      Placeholder.configure({
+        placeholder: ({ node }) => {
+          console.log("actual : ", node.type.name);
+          if (node.type.name === "heading") {
+            if (node.attrs.level === 1) return "Heading 1";
+            if (node.attrs.level === 2) return "Heading 2";
+            if (node.attrs.level === 3) return "Heading 3";
+          }
+          if (node.type.name === "paragraph") return "Write, / for commands";
+          // TODO : add more placeholder (list, code, etc)
+          return "";
         },
       }),
     ],

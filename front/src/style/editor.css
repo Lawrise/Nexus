@@ -139,3 +139,25 @@
     }
   }
 }
+
+.tiptap {
+  /* Placeholder (on every new line) */
+  .is-empty::before {
+    @apply text-gray-400 pointer-events-none;
+    content: attr(data-placeholder);
+    height: 0;
+    /* Default positioning for most nodes */
+    float: left;
+  }
+  
+  /* Special handling for task items */
+  ul[data-type="taskItem"].is-empty::before{
+    @apply text-gray-400 pointer-events-none ml-2;
+    content: "wesh alors";
+    height: 0;
+    float: none;
+    position: relative;
+    /* This helps align with the checkbox */
+    display: inline-block;
+  }
+}

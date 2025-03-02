@@ -93,7 +93,7 @@ const Menu: React.FC<MenuProps> = ({ editor }) => {
         placement: "top",
         interactive: true,
         hideOnClick: false,
-        trigger: "mousedown",
+        // trigger: "mousedown",
         showOnCreate: true,
         appendTo: () => document.body,
       }}

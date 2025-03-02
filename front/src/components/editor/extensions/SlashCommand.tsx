@@ -279,7 +279,7 @@ export const SlashCommand = Extension.create({
     return {
       suggestion: {
         char: "/",
-        startOfLine: false, // Allow slash commands anywhere, not just at line start
+        startOfLine: false,
         command: ({ editor, range, props }) => {
           props.command({ editor, range });
         },

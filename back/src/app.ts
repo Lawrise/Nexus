@@ -11,7 +11,7 @@ dotenv.config({
   path: path.resolve(__dirname, "../../.env"),
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
   origin: process.env.CLIENT_URL || "http://localhost:5000",
