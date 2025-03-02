@@ -19,6 +19,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import DragHandle from "@tiptap-pro/extension-drag-handle-react";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import Placeholder from "@tiptap/extension-placeholder";
+import ToggleHeading from "@/components/editor/extensions/toggle/toggleHeading";
 import { GripVertical } from "lucide-react";
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
@@ -33,6 +34,7 @@ import "@/style/editor.css";
 
 import Menu from "./extensions/menu";
 import CodeComponent from "./extensions/CodeBlockComponent";
+import ToggleHeadingComponent from "./extensions/toggle/toggleHeadingComponent";
 
 // create a lowlight instance
 const lowlight = createLowlight(all);
@@ -47,6 +49,7 @@ const Tiptap = () => {
   const editor = useEditor({
     extensions: [
       Document,
+      ToggleHeadingComponent,
       Paragraph,
       Text,
       Heading.configure({
@@ -128,6 +131,7 @@ const Tiptap = () => {
           return "";
         },
       }),
+      ToggleHeading,
     ],
     content: `
     <h1>Hello World! 🌎️</h1>

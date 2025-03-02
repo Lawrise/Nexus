@@ -10,6 +10,7 @@ import {
   ListOrdered,
   SquareCheck,
   Minus,
+  ChevronDown,
 } from "lucide-react";
 
 interface CommandItem {
@@ -100,6 +101,26 @@ const getSuggestionItems = (
       command: ({ editor, range }: GetSuggestionItemsProps) => {
         editor.chain().focus().deleteRange(range).setHorizontalRule().run();
       },
+    },
+    {
+      title: "Toggle Heading",
+      icon: <ChevronDown className="w-4 h-4" />,
+      command: ({ editor, range }) => {
+        editor.chain().focus().deleteRange(range).insertContent({
+          type: 'toggleHeading',
+          content: [
+            {
+              type: 'heading',
+              attrs: { level: 2 },
+              content: [{ type: 'text', text: 'Toggle Heading' }]
+            },
+            {
+              type: 'paragraph',
+              content: [{ type: 'text', text: 'Collapsible content goes here...' }]
+            }
+          ]
+        }).run();
+      }
     },
   ]
     .filter((item) => item.title.toLowerCase().startsWith(normalizedQuery))
