@@ -105,23 +105,45 @@ const getSuggestionItems = (
     {
       title: "Toggle Heading",
       icon: <ChevronDown className="w-4 h-4" />,
-      command: ({ editor, range }) => {
-        editor.chain().focus().deleteRange(range).insertContent({
-          type: 'toggleHeading',
-          content: [
-            {
-              type: 'heading',
-              attrs: { level: 2 },
-              content: [{ type: 'text', text: 'Toggle Heading' }]
+      command: ({ editor, range }: GetSuggestionItemsProps) => {
+        editor
+          .chain()
+          .focus()
+          .deleteRange(range)
+          .insertContent({
+            type: "toggleContainer",
+            attrs: {
+              open: true
             },
-            {
-              type: 'paragraph',
-              content: [{ type: 'text', text: 'Collapsible content goes here...' }]
-            }
-          ]
-        }).run();
+            content: [
+              {
+                type: "toggleTitle",
+                content: [
+                  {
+                    type: "text",
+                    text: "Toggle Heading Title"
+                  }
+                ]
+              },
+              {
+                type: "toggleContent",
+                content: [
+                  {
+                    type: "paragraph",
+                    content: [
+                      {
+                        type: "text",
+                        text: "Collapsible content goes here..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          })
+          .run();
       }
-    },
+    }
   ]
     .filter((item) => item.title.toLowerCase().startsWith(normalizedQuery))
     .slice(0, 10);
