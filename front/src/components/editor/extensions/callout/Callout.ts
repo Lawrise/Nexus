@@ -76,7 +76,7 @@ export const Callout = Node.create<CalloutOptions>({
     // This is where you use the regex pattern
     return [
       wrappingInputRule({
-        find: /^:::(\s*)$/,
+        find: /^\|(\s)$/,
         type: this.type,
         getAttributes: () => {
           return { type: "info" }; // Default to info type
