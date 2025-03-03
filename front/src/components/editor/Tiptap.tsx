@@ -33,6 +33,7 @@ import "@/style/editor.css";
 
 import Menu from "./extensions/menu";
 import CodeComponent from "./extensions/CodeBlockComponent";
+import CalloutComponent from "./extensions/CalloutComponent";
 
 // create a lowlight instance
 const lowlight = createLowlight(all);
@@ -52,11 +53,11 @@ const Tiptap = () => {
       Heading.configure({
         levels: [1, 2, 3],
       }),
-      Blockquote.configure({
-        HTMLAttributes: {
-          class: "border-l-4 border-gray-300 p-4 bg-gray-50",
-        },
-      }),
+      Blockquote.extend({
+        addNodeView() {
+          return ReactNodeViewRenderer(CalloutComponent);
+        }
+      }),    
       ListItem,
       BulletList.configure({
         HTMLAttributes: {
