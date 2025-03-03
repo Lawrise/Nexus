@@ -1,10 +1,10 @@
-# Atomic
+# Nexus
 Transform Learning into Understanding - A knowledge management platform currently in early development
 
 Currently looking for developers and designers to help build this vision. As a web student at 42 Paris, I'm passionate about creating tools that enhance learning. If you're interested in knowledge management, educational tech, or React development, feel free to reach out and join this exciting journey!
 
 ## 🚧 Development Status
-Atomic is currently in early development. I'm actively working on the foundational components. Many of the features described below represent my vision and roadmap rather than currently implemented functionality.
+Nexus is currently in early development. I'm actively working on the foundational components. Many of the features described below represent my vision and roadmap rather than currently implemented functionality.
 
 **Current Focus:** Editor implementation
 
@@ -12,7 +12,7 @@ Atomic is currently in early development. I'm actively working on the foundation
 
 ## 📚 Overview
 
-Atomic is a next-generation knowledge management platform that seamlessly bridges note-taking and active learning. Unlike traditional tools that fragment your learning journey across multiple applications, Atomic creates a unified ecosystem where ideas connect, knowledge evolves, and understanding deepens.
+Nexus is a next-generation knowledge management platform that seamlessly bridges note-taking and active learning. Unlike traditional tools that fragment your learning journey across multiple applications, Nexus creates a unified ecosystem where ideas connect, knowledge evolves, and understanding deepens.
 
 ## 🗺️ Roadmap
 
