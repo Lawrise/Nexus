@@ -10,7 +10,7 @@ export default {
   theme: {
   	extend: {
   		colors: {
-  			
+  			'primary': '#92400e',
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

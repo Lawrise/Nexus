@@ -30,10 +30,7 @@ const SidebarProfile: React.FC<SidebarHeaderProfileProps> = ({
 }) => {
   if (!user) {
     return (
-      <Link
-        href="/login"
-        className="w-full  group-data-[collapsible=icon]:p-0"
-      >
+      <Link href="/login" className="w-full  group-data-[collapsible=icon]:p-0">
         <span className="group-data-[collapsible=icon]:hidden">Connexion</span>
         <span className="hidden group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center">
           <User className="size-4" />
@@ -52,13 +49,11 @@ const SidebarProfile: React.FC<SidebarHeaderProfileProps> = ({
           <DropdownMenuTrigger className="w-full flex items-center space-x-4 rounded-md outline-none">
             <Avatar className="size-6 shrink-0 rounded-sm">
               <AvatarImage alt={username} />
-              <AvatarFallback className="bg-emerald-100 text-xs">
+              <AvatarFallback className="bg-amber-600 text-xs">
                 {userInitials}
               </AvatarFallback>
             </Avatar>
-            <p className="truncate text-sm font-medium t">
-              {username}
-            </p>
+            <p className="truncate text-sm font-medium t">{username}</p>
           </DropdownMenuTrigger>
         </TooltipTrigger>
         <TooltipContent

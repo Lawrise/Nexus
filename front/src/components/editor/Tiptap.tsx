@@ -33,6 +33,7 @@ import "@/style/editor.css";
 
 import Menu from "./extensions/menu";
 import CodeComponent from "./extensions/CodeBlockComponent";
+import { Callout } from "./extensions/callout/Callout";
 
 // create a lowlight instance
 const lowlight = createLowlight(all);
@@ -52,11 +53,7 @@ const Tiptap = () => {
       Heading.configure({
         levels: [1, 2, 3],
       }),
-      Blockquote.configure({
-        HTMLAttributes: {
-          class: "border-l-4 border-gray-300 p-4 bg-gray-50",
-        },
-      }),
+      Callout,
       ListItem,
       BulletList.configure({
         HTMLAttributes: {
@@ -89,7 +86,7 @@ const Tiptap = () => {
       [&>label]:items-center-
       [&>label>input]:w-4
       [&>label>input]:h-4
-      [&>label>input]:accent-blue-500
+      [&>label>input]:accent-blue500
        [&>label>input]:ring-none
       [&>div]:flex
       [&>div]:items-center

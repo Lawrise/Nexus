@@ -67,7 +67,7 @@ const Login: React.FC = () => {
   }
   return (
     <main className="flex w-full h-screen">
-      <div className="relative w-1/3 h-full flex flex-col bg-emerald-200 justify-center items-center space-y-6">
+      <div className="relative w-1/3 h-full flex flex-col bg-sky-200 justify-center items-center space-y-6">
         <h1 className="absolute top-8 left-8 text-6xl text-b border-4 border-double">
           Pulse
         </h1>
@@ -114,7 +114,7 @@ const Login: React.FC = () => {
               <Button
                 disabled={isLoading}
                 type="submit"
-                className="w-full mt-2 bg-emerald-200 text-gray-700 hover:bg-emerald-300"
+                className="w-full mt-2 bg-sky-200 text-gray-700 hover:bg-sky-300"
               >
                 Login
               </Button>

@@ -52,7 +52,7 @@ const HeadingSelector: React.FC<HeadingSelectorProps> = ({ editor }) => {
                 editor.isActive("heading", {
                   level: parseInt(item.value.charAt(1)),
                 }))
-                ? "text-blue-500 font-bold"
+                ? "text-blue500 font-bold"
                 : ""
             }`}
         >
@@ -76,7 +76,7 @@ const Menu: React.FC<MenuProps> = ({ editor }) => {
   const getButtonClass = (isActive: boolean): string => {
     const baseClass =
       "p-2 rounded-md transition-colors hover:bg-neutral-100 hover:dark:bg-neutral-700";
-    const activeClass = "text-blue-500 text-bold";
+    const activeClass = "text-blue500 text-bold";
 
     return `${baseClass} ${isActive ? activeClass : ""}`;
   };
