@@ -86,7 +86,7 @@ const Tiptap = () => {
       [&>label]:items-center-
       [&>label>input]:w-4
       [&>label>input]:h-4
-      [&>label>input]:accent-blue-500
+      [&>label>input]:accent-blue500
        [&>label>input]:ring-none
       [&>div]:flex
       [&>div]:items-center

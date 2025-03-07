@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import apiAxios from "@/services/api";
 import axios from "axios";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 const formSchema = z
   .object({
@@ -88,7 +88,7 @@ const Register: React.FC = () => {
 
   return (
     <main className="flex w-full h-screen">
-      <div className="relative w-1/3 h-full flex flex-col bg-emerald-200 justify-center items-center space-y-6">
+      <div className="relative w-1/3 h-full flex flex-col bg-sky-200 justify-center items-center space-y-6">
         <h1 className="absolute top-8 left-8 text-6xl text-b border-4 border-double">
           Pulse
         </h1>
@@ -160,7 +160,7 @@ const Register: React.FC = () => {
             <div className="flex justify-center">
               <Button
                 type="submit"
-                className="w-full mt-2 bg-emerald-200 text-gray-700 hover:bg-emerald-300"
+                className="w-full mt-2 bg-sky-200 text-gray-700 hover:bg-sky-300"
                 disabled={isLoading}
               >
                 {isLoading ? (
