@@ -33,8 +33,8 @@ export const Callout = Node.create<CalloutOptions>({
 
   addAttributes() {
     return {
-      type: {
-        default: "info",
+      emoji: {
+        default: "ℹ️",
       },
     };
   },

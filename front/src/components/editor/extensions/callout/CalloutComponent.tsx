@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/popover";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 
@@ -48,9 +47,8 @@ const CalloutComponent: React.FC<NodeViewProps> = ({
   );
   const [isOpen, setIsOpen] = useState(false);
 
-  // Update internal state when node attrs change
   useEffect(() => {
-    setEmoji((node?.attrs as CalloutAttributes)?.emoji || DEFAULT_EMOJIS.info);
+    setEmoji((node?.attrs as CalloutAttributes)?.emoji);
   }, [node?.attrs]);
 
   const handleEmojiSelect = (emojiData: EmojiData) => {
@@ -70,7 +68,6 @@ const CalloutComponent: React.FC<NodeViewProps> = ({
               className="p-1 hover:bg-transparent focus-visible:ring-0"
             >
               <span className="text-lg">{emoji}</span>
-              <ChevronDown className="h-4 w-4" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="p-0" align="start">
